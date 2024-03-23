@@ -18,27 +18,27 @@ pool.on('error', (err) => {
 });
 
 const createTableText = `
-  CREATE TABLE IF NOT EXISTS public.reviews (
-    id SERIAL PRIMARY KEY,
-    gigId text NOT NULL,
-    reviewerId text NOT NULL,
-    orderId text NOT NULL,
-    sellerId text NOT NULL,
-    review text NOT NULL,
-    reviewerImage text NOT NULL,
-    reviewerUsername text NOT NULL,
-    country text NOT NULL,
-    reviewType text NOT NULL,
-    rating integer DEFAULT 0 NOT NULL,
-    createdAt timestamp DEFAULT CURRENT_DATE
+  CREATE TABLE IF NOT EXISTS reviews (
+    "id" SERIAL PRIMARY KEY,
+    "gigId" text NOT NULL,
+    "reviewerId" text NOT NULL,
+    "orderId" text NOT NULL,
+    "sellerId" text NOT NULL,
+    "review" text NOT NULL,
+    "reviewerImage" text NOT NULL,
+    "reviewerUsername" text NOT NULL,
+    "country" text NOT NULL,
+    "reviewType" text NOT NULL,
+    "rating" integer DEFAULT 0 NOT NULL,
+    "createdAt" timestamp DEFAULT CURRENT_DATE
   );
 
-  CREATE INDEX IF NOT EXISTS gigId_idx ON public.reviews (gigId);
+  CREATE INDEX IF NOT EXISTS "gigId_idx" ON reviews ("gigId");
 
-  CREATE INDEX IF NOT EXISTS sellerId_idx ON public.reviews (sellerId);
+  CREATE INDEX IF NOT EXISTS "sellerId_idx" ON reviews ("sellerId");
 `;
 
-export async function databaseConnection() {
+async function databaseConnection() {
   try {
     await pool.connect();
     logger.info('ReviewService Postgresql database connection has been established successfully');
@@ -48,3 +48,5 @@ export async function databaseConnection() {
     logger.log({ level: 'error', message: `ReviewService databaseConnection() method error: ${error}` });
   }
 }
+
+export { databaseConnection, pool };
