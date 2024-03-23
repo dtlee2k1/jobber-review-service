@@ -3,7 +3,10 @@ import dotenv from 'dotenv';
 dotenv.config({});
 
 class Config {
-  public DATABASE_URL: string | undefined;
+  public DATABASE_HOST: string | undefined;
+  public DATABASE_NAME: string | undefined;
+  public DATABASE_USER: string | undefined;
+  public DATABASE_PASSWORD: string | undefined;
   public NODE_ENV: string | undefined;
   public RABBITMQ_ENDPOINT: string | undefined;
   public JWT_TOKEN: string | undefined;
@@ -15,7 +18,10 @@ class Config {
   public ELASTIC_SEARCH_URL: string | undefined;
 
   constructor() {
-    this.DATABASE_URL = process.env.DATABASE_URL || '';
+    this.DATABASE_HOST = process.env.DATABASE_HOST || '';
+    this.DATABASE_NAME = process.env.DATABASE_NAME || '';
+    this.DATABASE_USER = process.env.DATABASE_USER || '';
+    this.DATABASE_PASSWORD = process.env.DATABASE_PASSWORD || '';
     this.NODE_ENV = process.env.NODE_ENV || '';
     this.JWT_TOKEN = process.env.JWT_TOKEN || '';
     this.GATEWAY_JWT_TOKEN = process.env.GATEWAY_JWT_TOKEN || '';
