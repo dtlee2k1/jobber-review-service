@@ -21,7 +21,7 @@ export async function addReview(data: IReviewDocument) {
     rating: data.rating,
     orderId: data.orderId,
     createdAt: `${createdAtDate}`,
-    type: `${reviewType}`
+    type: `${reviewType}` // buyer-review || seller-review
   };
   await publishFanoutMessage(
     reviewChannel,
