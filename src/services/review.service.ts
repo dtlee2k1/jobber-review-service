@@ -39,7 +39,7 @@ export async function getReviewsById(gigId: string) {
 }
 
 export async function getReviewsBySellerId(sellerId: string) {
-  const reviews = await pool.query('SELECT * FROM reviews WHERE reviews."gigId" = $1 AND reviews."reviewType" = $2', [
+  const reviews = await pool.query('SELECT * FROM reviews WHERE reviews."sellerId" = $1 AND reviews."reviewType" = $2', [
     sellerId,
     'seller-review'
   ]);
